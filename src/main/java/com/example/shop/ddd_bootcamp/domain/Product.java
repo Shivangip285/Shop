@@ -9,4 +9,6 @@ import javax.validation.constraints.NotEmpty;
 public class Product {
     @NotEmpty
     String name;
+
+    Price price;
 }

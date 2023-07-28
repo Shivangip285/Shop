@@ -1,16 +1,36 @@
 package com.example.shop.ddd_bootcamp.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+
 @Data
+@AllArgsConstructor
 public class Cart {
     private final List<Item> items;
     private final List<Item> removedItems;
+    private String id= UUID.randomUUID().toString();
 
     public Cart(List<Item> items, List<Item> removedItems) {
         this.items = items;
         this.removedItems = removedItems;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart cart = (Cart) o;
+        return items.equals(cart.items) && removedItems.equals(cart.removedItems) && id.equals(cart.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(items, removedItems, id);
     }
 
     public List<Item> addItem(Item item){
