@@ -14,15 +14,23 @@ class CartTest {
 
     @Test
     public void shouldAddPencilToCartItem(){
-        Cart cart=new Cart(new ArrayList<>());
+        Cart cart=new Cart(new ArrayList<>(),new ArrayList<>());
         Item pencil = new Item(new Product("Apple pencil"),2);
         Item sonyWirelessHeadphone = new Item(new Product("Sony Wireless headphone"),5);
-        cart.viewItem();
+        cart.viewItem(List.of(pencil,sonyWirelessHeadphone));
 
         cart.addItem(pencil);
         cart.addItem(sonyWirelessHeadphone);
 
         assertThat(cart.getItems()).isEqualTo(List.of(pencil,sonyWirelessHeadphone));
         assertThat(cart.getItems().get(0).getProduct()).isEqualTo(new Product("Apple pencil"));
+
+        cart.removeItem(pencil);
+        assertThat(cart.getItems()).isEqualTo(List.of(sonyWirelessHeadphone));
+        assertThat(cart.getRemovedItems()).isEqualTo(List.of(pencil));
+
+        cart.addItem(pencil);
+        assertThat(cart.getItems()).isEqualTo(List.of(sonyWirelessHeadphone, pencil));
+        assertThat(cart.getRemovedItems()).isEqualTo(List.of());
     }
 }
