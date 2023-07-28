@@ -1,4 +1,4 @@
-package com.example.shop;
+package com.example.shop.ddd_bootcamp.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

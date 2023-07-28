@@ -1,5 +1,8 @@
 package com.example.shop;
 
+import com.example.shop.ddd_bootcamp.domain.Cart;
+import com.example.shop.ddd_bootcamp.domain.Item;
+import com.example.shop.ddd_bootcamp.domain.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -20,6 +23,6 @@ class CartTest {
         cart.addItem(sonyWirelessHeadphone);
 
         assertThat(cart.getItems()).isEqualTo(List.of(pencil,sonyWirelessHeadphone));
-        assertThat(cart.getItems().get(0).product).isEqualTo(new Product("Apple pencil"));
+        assertThat(cart.getItems().get(0).getProduct()).isEqualTo(new Product("Apple pencil"));
     }
 }
