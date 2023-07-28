@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+
 @Data
 @AllArgsConstructor
 public class Product {
@@ -11,4 +12,6 @@ public class Product {
     String name;
 
     Price price;
+
+
 }

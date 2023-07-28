@@ -2,18 +2,20 @@ package com.example.shop.ddd_bootcamp.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-public class Cart {
+public class Cart {//entity
     private final List<Item> items;
     private final List<Item> removedItems;
     private String id= UUID.randomUUID().toString();
+
+
 
     public Cart(List<Item> items, List<Item> removedItems) {
         this.items = items;
@@ -41,6 +43,7 @@ public class Cart {
          this.items.add(item);
          return items;
     }
+
     public List<Item> getItems() {
         return this.items;
     }
@@ -53,5 +56,12 @@ public class Cart {
         this.items.remove(item);
         this.removedItems.add(item);
         return items;
+    }
+
+    public String createOrder(){
+        List<Product> productList=new ArrayList<>();
+       getItems().forEach(x->productList.add(x.product));
+        Order order = new Order(productList);
+        return order.getId();
     }
 }

@@ -4,6 +4,7 @@ import com.example.shop.ddd_bootcamp.domain.Cart;
 import com.example.shop.ddd_bootcamp.domain.Item;
 import com.example.shop.ddd_bootcamp.domain.Price;
 import com.example.shop.ddd_bootcamp.domain.Product;
+import com.example.shop.ddd_bootcamp.domain.domain_service.CompetativeBasedPricer;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ class CartTest {
     @Test
     public void shouldAddPencilToCartItem(){
         Cart cart=new Cart(new ArrayList<>(),new ArrayList<>());
-        Item pencil = new Item(new Product("Apple pencil",new Price(10.7)),2);
+        List<Product> competitorProduct=List.of(new Product("Apple Pencil",new Price(10.7)));
+        Item pencil = new Item(new Product("Apple Pencil",new Price(new CompetativeBasedPricer(competitorProduct).getDiscount("Apple Pencil"))),2);
         Item sonyWirelessHeadphone = new Item(new Product("Sony Wireless headphone",new Price(Currency.getInstance("CAD"),10.7)),5);
         cart.viewItem(List.of(pencil,sonyWirelessHeadphone));
 

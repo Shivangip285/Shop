@@ -6,7 +6,7 @@ import java.util.Currency;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Price {
+public class Price {//value object
     private Currency currency;
     private double amount;
 
