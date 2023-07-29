@@ -13,5 +13,7 @@ public class Product {
 
     Price price;
 
+    double weight;
+
 
 }
